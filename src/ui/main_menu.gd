@@ -22,6 +22,7 @@ func _on_start_button_pressed() -> void:
     print("Start Journey triggered!")
     start_button.text = "Loading..."
     start_button.disabled = true
+    QuestManager.reset_chapter()
 
     var err = get_tree().change_scene_to_file("res://scenes/world/village.tscn")
     if err != OK:

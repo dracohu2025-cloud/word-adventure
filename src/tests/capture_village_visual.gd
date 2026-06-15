@@ -15,4 +15,9 @@ func _ready() -> void:
     var image := get_viewport().get_texture().get_image()
     image.save_png("res://.tmp_assets/village_visual_pass.png")
     print("Saved village visual screenshot")
+    image = null
+    AudioManager.stop_music()
+    village.queue_free()
+    await get_tree().process_frame
+    await get_tree().process_frame
     get_tree().quit()

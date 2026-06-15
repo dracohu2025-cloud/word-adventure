@@ -4,76 +4,28 @@
   "difficulty": "A1",
   "words": [
     {
-      "word": "sword",
-      "phonetic": "/sɔːrd/",
-      "meaning": "剑",
+      "word": "apple",
+      "phonetic": "/ˈæpl/",
+      "meaning": "苹果",
       "pos": "noun",
-      "example": "The hero raised his sword.",
+      "example": "I eat an apple.",
+      "context_prompt": "I eat an ____.",
+      "context_options": ["apple", "river", "shield", "stone"],
+      "meaning_options": ["apple", "river", "shield", "light"],
       "difficulty": 1,
-      "tags": ["weapon", "combat"]
+      "tags": ["food", "chapter_1"]
     },
     {
-      "word": "shield",
-      "phonetic": "/ʃiːld/",
-      "meaning": "盾",
+      "word": "book",
+      "phonetic": "/bʊk/",
+      "meaning": "书",
       "pos": "noun",
-      "example": "A shield blocks enemy attacks.",
+      "example": "The magic book shines.",
+      "context_prompt": "The magic ____ shines.",
+      "context_options": ["book", "water", "tree", "sword"],
+      "meaning_options": ["book", "fire", "friend", "home"],
       "difficulty": 1,
-      "tags": ["armor", "combat"]
-    },
-    {
-      "word": "village",
-      "phonetic": "/ˈvɪlɪdʒ/",
-      "meaning": "村庄",
-      "pos": "noun",
-      "example": "The village is peaceful at dawn.",
-      "difficulty": 1,
-      "tags": ["place"]
-    },
-    {
-      "word": "magic",
-      "phonetic": "/ˈmædʒɪk/",
-      "meaning": "魔法",
-      "pos": "noun",
-      "example": "She learned ancient magic.",
-      "difficulty": 1,
-      "tags": ["magic"]
-    },
-    {
-      "word": "quest",
-      "phonetic": "/kwest/",
-      "meaning": "任务；探索",
-      "pos": "noun",
-      "example": "He accepted a dangerous quest.",
-      "difficulty": 2,
-      "tags": ["adventure"]
-    },
-    {
-      "word": "potion",
-      "phonetic": "/ˈpoʊʃn/",
-      "meaning": "药水",
-      "pos": "noun",
-      "example": "Drink this potion to heal.",
-      "difficulty": 2,
-      "tags": ["item", "heal"]
-    },
-    {
-      "word": "monster",
-      "phonetic": "/ˈmɒnstər/",
-      "meaning": "怪物",
-      "pos": "noun",
-      "example": "A monster blocked the road.",
-      "difficulty": 1,
-      "tags": ["enemy"]
-    },
-    {
-      "word": "treasure",
-      "phonetic": "/ˈtreʒər/",
-      "meaning": "宝藏",
-      "pos": "noun",
-      "example": "They found hidden treasure.",
-      "difficulty": 2,
-      "tags": ["reward"]
+      "tags": ["magic", "chapter_1"]
     },
     {
       "word": "bridge",
@@ -81,8 +33,11 @@
       "meaning": "桥",
       "pos": "noun",
       "example": "Cross the bridge to enter the forest.",
+      "context_prompt": "Cross the ____ to enter the forest.",
+      "context_options": ["bridge", "apple", "fire", "shield"],
+      "meaning_options": ["bridge", "village", "monster", "treasure"],
       "difficulty": 1,
-      "tags": ["place"]
+      "tags": ["place", "chapter_1"]
     },
     {
       "word": "danger",
@@ -90,8 +45,227 @@
       "meaning": "危险",
       "pos": "noun",
       "example": "The cave is full of danger.",
+      "context_prompt": "The cave is full of ____.",
+      "context_options": ["danger", "friend", "apple", "sun"],
+      "meaning_options": ["danger", "home", "water", "tree"],
       "difficulty": 2,
-      "tags": ["status"]
+      "tags": ["status", "chapter_1"]
+    },
+    {
+      "word": "fire",
+      "phonetic": "/ˈfaɪər/",
+      "meaning": "火",
+      "pos": "noun",
+      "example": "The fire warms the forge.",
+      "context_prompt": "The ____ warms the forge.",
+      "context_options": ["fire", "river", "book", "friend"],
+      "meaning_options": ["fire", "water", "stone", "home"],
+      "difficulty": 1,
+      "tags": ["forge", "chapter_1"]
+    },
+    {
+      "word": "forest",
+      "phonetic": "/ˈfɔːrɪst/",
+      "meaning": "森林",
+      "pos": "noun",
+      "example": "We walk in the forest.",
+      "context_prompt": "We walk in the ____.",
+      "context_options": ["forest", "sword", "book", "water"],
+      "meaning_options": ["forest", "river", "shield", "apple"],
+      "difficulty": 1,
+      "tags": ["place", "chapter_1"]
+    },
+    {
+      "word": "friend",
+      "phonetic": "/frend/",
+      "meaning": "朋友",
+      "pos": "noun",
+      "example": "My friend helps me.",
+      "context_prompt": "My ____ helps me.",
+      "context_options": ["friend", "fire", "stone", "bridge"],
+      "meaning_options": ["friend", "monster", "quest", "potion"],
+      "difficulty": 1,
+      "tags": ["people", "chapter_1"]
+    },
+    {
+      "word": "home",
+      "phonetic": "/hoʊm/",
+      "meaning": "家",
+      "pos": "noun",
+      "example": "I go home after the quest.",
+      "context_prompt": "I go ____ after the quest.",
+      "context_options": ["home", "sword", "light", "tree"],
+      "meaning_options": ["home", "river", "danger", "apple"],
+      "difficulty": 1,
+      "tags": ["place", "chapter_1"]
+    },
+    {
+      "word": "light",
+      "phonetic": "/laɪt/",
+      "meaning": "光",
+      "pos": "noun",
+      "example": "The light opens the page.",
+      "context_prompt": "The ____ opens the page.",
+      "context_options": ["light", "monster", "stone", "water"],
+      "meaning_options": ["light", "sword", "forest", "potion"],
+      "difficulty": 1,
+      "tags": ["magic", "chapter_1"]
+    },
+    {
+      "word": "magic",
+      "phonetic": "/ˈmædʒɪk/",
+      "meaning": "魔法",
+      "pos": "noun",
+      "example": "She learned ancient magic.",
+      "context_prompt": "She learned ancient ____.",
+      "context_options": ["magic", "apple", "bridge", "friend"],
+      "meaning_options": ["magic", "village", "tree", "stone"],
+      "difficulty": 1,
+      "tags": ["magic", "chapter_1"]
+    },
+    {
+      "word": "monster",
+      "phonetic": "/ˈmɒnstər/",
+      "meaning": "怪物",
+      "pos": "noun",
+      "example": "A monster blocked the road.",
+      "context_prompt": "A ____ blocked the road.",
+      "context_options": ["monster", "potion", "sun", "home"],
+      "meaning_options": ["monster", "treasure", "quest", "friend"],
+      "difficulty": 1,
+      "tags": ["enemy", "chapter_1"]
+    },
+    {
+      "word": "potion",
+      "phonetic": "/ˈpoʊʃn/",
+      "meaning": "药水",
+      "pos": "noun",
+      "example": "Drink this potion to heal.",
+      "context_prompt": "Drink this ____ to heal.",
+      "context_options": ["potion", "bridge", "forest", "sword"],
+      "meaning_options": ["potion", "shield", "apple", "water"],
+      "difficulty": 2,
+      "tags": ["item", "heal", "chapter_1"]
+    },
+    {
+      "word": "quest",
+      "phonetic": "/kwest/",
+      "meaning": "任务；探索",
+      "pos": "noun",
+      "example": "He accepted a dangerous quest.",
+      "context_prompt": "He accepted a dangerous ____.",
+      "context_options": ["quest", "sun", "river", "fire"],
+      "meaning_options": ["quest", "apple", "home", "light"],
+      "difficulty": 2,
+      "tags": ["adventure", "chapter_1"]
+    },
+    {
+      "word": "river",
+      "phonetic": "/ˈrɪvər/",
+      "meaning": "河流",
+      "pos": "noun",
+      "example": "The river is blue.",
+      "context_prompt": "The ____ is blue.",
+      "context_options": ["river", "fire", "sword", "book"],
+      "meaning_options": ["river", "forest", "shield", "apple"],
+      "difficulty": 1,
+      "tags": ["place", "chapter_1"]
+    },
+    {
+      "word": "shield",
+      "phonetic": "/ʃiːld/",
+      "meaning": "盾",
+      "pos": "noun",
+      "example": "A shield blocks enemy attacks.",
+      "context_prompt": "A ____ blocks enemy attacks.",
+      "context_options": ["shield", "apple", "river", "light"],
+      "meaning_options": ["shield", "sword", "potion", "bridge"],
+      "difficulty": 1,
+      "tags": ["armor", "combat", "chapter_1"]
+    },
+    {
+      "word": "stone",
+      "phonetic": "/stoʊn/",
+      "meaning": "石头",
+      "pos": "noun",
+      "example": "The stone is heavy.",
+      "context_prompt": "The ____ is heavy.",
+      "context_options": ["stone", "friend", "magic", "water"],
+      "meaning_options": ["stone", "fire", "sword", "book"],
+      "difficulty": 1,
+      "tags": ["forge", "chapter_1"]
+    },
+    {
+      "word": "sun",
+      "phonetic": "/sʌn/",
+      "meaning": "太阳",
+      "pos": "noun",
+      "example": "The sun helps the garden grow.",
+      "context_prompt": "The ____ helps the garden grow.",
+      "context_options": ["sun", "sword", "bridge", "danger"],
+      "meaning_options": ["sun", "tree", "water", "fire"],
+      "difficulty": 1,
+      "tags": ["garden", "chapter_1"]
+    },
+    {
+      "word": "sword",
+      "phonetic": "/sɔːrd/",
+      "meaning": "剑",
+      "pos": "noun",
+      "example": "The hero raised his sword.",
+      "context_prompt": "The hero raised his ____.",
+      "context_options": ["sword", "water", "home", "apple"],
+      "meaning_options": ["sword", "shield", "potion", "bridge"],
+      "difficulty": 1,
+      "tags": ["weapon", "combat", "chapter_1"]
+    },
+    {
+      "word": "tree",
+      "phonetic": "/triː/",
+      "meaning": "树",
+      "pos": "noun",
+      "example": "The tree grows near the road.",
+      "context_prompt": "The ____ grows near the road.",
+      "context_options": ["tree", "book", "monster", "shield"],
+      "meaning_options": ["tree", "sun", "stone", "fire"],
+      "difficulty": 1,
+      "tags": ["garden", "chapter_1"]
+    },
+    {
+      "word": "treasure",
+      "phonetic": "/ˈtreʒər/",
+      "meaning": "宝藏",
+      "pos": "noun",
+      "example": "They found hidden treasure.",
+      "context_prompt": "They found hidden ____.",
+      "context_options": ["treasure", "danger", "water", "tree"],
+      "meaning_options": ["treasure", "monster", "quest", "village"],
+      "difficulty": 2,
+      "tags": ["reward", "chapter_1"]
+    },
+    {
+      "word": "village",
+      "phonetic": "/ˈvɪlɪdʒ/",
+      "meaning": "村庄",
+      "pos": "noun",
+      "example": "The village is peaceful at dawn.",
+      "context_prompt": "The ____ is peaceful at dawn.",
+      "context_options": ["village", "sword", "fire", "potion"],
+      "meaning_options": ["village", "bridge", "monster", "treasure"],
+      "difficulty": 1,
+      "tags": ["place", "chapter_1"]
+    },
+    {
+      "word": "water",
+      "phonetic": "/ˈwɔːtər/",
+      "meaning": "水",
+      "pos": "noun",
+      "example": "I drink water.",
+      "context_prompt": "I drink ____.",
+      "context_options": ["water", "sword", "tree", "book"],
+      "meaning_options": ["water", "fire", "stone", "book"],
+      "difficulty": 1,
+      "tags": ["garden", "chapter_1"]
     }
   ]
 }

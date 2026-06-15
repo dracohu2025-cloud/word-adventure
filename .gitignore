@@ -14,6 +14,9 @@ mono_crash.*.json
 
 # System/tool-specific ignores
 .DS_Store
+.env
+.env.*
+!.env.example
 *.tmp
 *.log
 .tmp_assets/

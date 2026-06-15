@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://src/world/boss_encounter.gd" id="1_boss"]
+[ext_resource type="Texture2D" path="res://assets/third_party/kenney_tiny_dungeon/Tiles/tile_0110.png" id="2_boss_tex"]
+[ext_resource type="Texture2D" path="res://assets/third_party/kenney_game_icons/PNG/White/2x/exclamation.png" id="3_marker"]
+[ext_resource type="Texture2D" path="res://assets/third_party/kenney_game_icons/PNG/Black/2x/exclamation.png" id="4_marker_shadow"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boss"]
+size = Vector2(96, 96)
+
+[node name="BossEncounter" type="Area2D" groups=["boss"]]
+script = ExtResource("1_boss")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_boss_tex")
+
+[node name="InteractionMarker" type="Node2D" parent="."]
+position = Vector2(0, -42)
+z_index = 20
+
+[node name="Shadow" type="Sprite2D" parent="InteractionMarker"]
+scale = Vector2(0.54, 0.54)
+texture = ExtResource("4_marker_shadow")
+
+[node name="Icon" type="Sprite2D" parent="InteractionMarker"]
+scale = Vector2(0.43, 0.43)
+modulate = Color(1, 0.831373, 0.227451, 1)
+texture = ExtResource("3_marker")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_boss")

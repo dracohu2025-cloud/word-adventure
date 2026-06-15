@@ -1,0 +1,128 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/ui/battle_panel.gd" id="1_battle"]
+
+[node name="BattlePanel" type="CanvasLayer"]
+layer = 20
+script = ExtResource("1_battle")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -360.0
+offset_top = -292.0
+offset_right = 360.0
+offset_bottom = -24.0
+mouse_filter = 0
+
+[node name="EnemyNameLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 18.0
+offset_top = 14.0
+offset_right = -18.0
+offset_bottom = 38.0
+text = "Enemy"
+
+[node name="EnemyHPLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 18.0
+offset_top = 42.0
+offset_right = -380.0
+offset_bottom = 66.0
+text = "Enemy HP: 0/0"
+
+[node name="PlayerHPLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 360.0
+offset_top = 42.0
+offset_right = -18.0
+offset_bottom = 66.0
+text = "Player HP: 0/0"
+horizontal_alignment = 2
+
+[node name="EnemySprite" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -122.0
+offset_right = 32.0
+offset_bottom = -58.0
+stretch_mode = 5
+
+[node name="QuestionLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 18.0
+offset_top = 76.0
+offset_right = -18.0
+offset_bottom = 112.0
+text = "Choose the correct word."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SkillRow" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 90.0
+offset_top = 122.0
+offset_right = -90.0
+offset_bottom = 168.0
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="AttackButton" type="Button" parent="Panel/SkillRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 42)
+text = "Attack"
+
+[node name="ShieldButton" type="Button" parent="Panel/SkillRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 42)
+text = "Shield"
+
+[node name="CaptureButton" type="Button" parent="Panel/SkillRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 42)
+disabled = true
+text = "Capture"
+
+[node name="OptionsContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 80.0
+offset_top = 176.0
+offset_right = -80.0
+offset_bottom = 220.0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="FeedbackLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -34.0
+offset_right = -18.0
+offset_bottom = -10.0
+text = ""
+horizontal_alignment = 1

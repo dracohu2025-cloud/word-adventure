@@ -2,13 +2,25 @@ extends Node
 ## Regression test for Phase 1: dialogue -> choice puzzle -> open gate loop.
 
 func _ready() -> void:
+    QuestManager.reset_chapter()
     var village = load("res://scenes/world/village.tscn").instantiate()
     add_child(village)
     await get_tree().process_frame
     assert(GameManager.current_state == GameManager.GameState.WORLD, "Village should enter world state")
 
-    var npc = village.get_node("NPC")
+    var npc = village.get_node("LibraryNPC")
     assert(npc != null, "NPC not found")
+    var player: CharacterBody2D = village.get_node("Player")
+    var interaction_marker: CanvasItem = npc.get_node("InteractionMarker")
+    player.global_position = npc.global_position + Vector2(260, 0)
+    await get_tree().physics_frame
+    await get_tree().physics_frame
+    assert(not interaction_marker.visible, "NPC interaction marker should be hidden before player approaches")
+
+    player.global_position = npc.global_position + Vector2(0, 48)
+    await get_tree().physics_frame
+    await get_tree().physics_frame
+    assert(interaction_marker.visible, "NPC interaction marker should be visible before dialogue is completed")
 
     print("Starting Phase 1 regression test...")
     npc.start_interaction()
@@ -28,8 +40,16 @@ func _ready() -> void:
     await get_tree().create_timer(0.1).timeout
 
     var gate_collision = village.get_node("ExitGate/CollisionShape2D")
-    assert(gate_collision.disabled, "Exit gate should open after correct answer")
+    assert(not gate_collision.disabled, "Exit gate should stay closed after one branch")
     assert(GameManager.current_state == GameManager.GameState.WORLD, "Should return to world state")
+    assert(npc.is_dialogue_completed(), "NPC should be marked completed after the correct answer")
+    assert(QuestManager.is_branch_completed("library"), "Library branch should complete after correct answer")
+    assert(QuestManager.get_book_page_count() == 1, "Completing one branch should grant one page")
+    assert(not interaction_marker.visible, "NPC interaction marker should hide after dialogue is completed")
+    await get_tree().create_timer(1.5).timeout
 
     print("✅ Phase 1 regression test PASSED")
+    AudioManager.stop_music()
+    village.queue_free()
+    await get_tree().process_frame
     get_tree().quit()

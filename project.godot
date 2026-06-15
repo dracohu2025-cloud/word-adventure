@@ -29,6 +29,9 @@ buses/default_bus_layout="res://assets/audio/default_bus_layout.tres"
 
 GameManager="*res://src/autoload/game_manager.gd"
 PlayerData="*res://src/autoload/player_data.gd"
+QuestManager="*res://src/autoload/quest_manager.gd"
+WordBank="*res://src/autoload/word_bank.gd"
+CombatManager="*res://src/autoload/combat_manager.gd"
 AudioManager="*res://src/autoload/audio_manager.gd"
 SceneTransition="*res://src/autoload/scene_transition.gd"
 DialogueManager="*res://src/autoload/dialogue_manager.gd"
@@ -41,6 +44,7 @@ ControlHints="*res://scenes/ui/control_hints.tscn"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/handheld/orientation=4
 
 [input]

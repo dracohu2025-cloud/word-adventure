@@ -4,8 +4,10 @@ const TILE_SIZE: int = 16
 const TILE_SCALE: float = 3.0
 const WORLD_TILE: int = int(TILE_SIZE * TILE_SCALE)
 const TILE_PATH: String = "res://assets/third_party/kenney_tiny_town/Tiles/tile_%04d.png"
+const DUNGEON_TILE_PATH: String = "res://assets/third_party/kenney_tiny_dungeon/Tiles/tile_%04d.png"
 
 var _textures: Dictionary = {}
+var _dungeon_textures: Dictionary = {}
 
 @onready var ground: Node2D = $Ground
 @onready var main_road: Node2D = $MainRoad
@@ -14,6 +16,7 @@ var _textures: Dictionary = {}
 @onready var trees: Node2D = $Trees
 @onready var stones: Node2D = $Stones
 @onready var signpost: Node2D = $Signpost
+@onready var branch_anchors: Node2D = $BranchAnchors
 @onready var gate_visual: Node2D = $"../ExitGate/GateVisual"
 
 func _ready() -> void:
@@ -23,6 +26,7 @@ func _ready() -> void:
     _build_houses()
     _build_trees()
     _build_stones()
+    _build_branch_anchors()
     _build_signpost()
     _build_gate()
 
@@ -31,11 +35,18 @@ func _load_textures() -> void:
         0, 1, 2, 3, 4, 16, 17, 25, 28, 29, 44, 45, 46, 47,
         48, 49, 50, 52, 53, 54, 60, 61, 62, 63, 64, 65, 66, 67,
         68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 83, 84,
-        85, 86, 87, 88, 89, 90, 91, 92, 104, 105, 106, 107
+        85, 86, 87, 88, 89, 90, 91, 92, 104, 105, 106, 107, 115, 130, 131
     ]
 
     for id in ids:
         _textures[id] = load(TILE_PATH % id)
+
+    var dungeon_ids := [
+        63, 72, 75, 101, 102, 103, 104, 113, 114, 115, 116, 129, 130, 131
+    ]
+
+    for id in dungeon_ids:
+        _dungeon_textures[id] = load(DUNGEON_TILE_PATH % id)
 
 func _build_ground() -> void:
     for x in range(-13, 14):
@@ -103,6 +114,27 @@ func _build_stones() -> void:
     for spec in stone_specs:
         _add_tile(stones, spec[0], spec[1])
 
+func _build_branch_anchors() -> void:
+    _build_library_anchor()
+    _build_blacksmith_anchor()
+    _build_garden_anchor()
+
+func _build_library_anchor() -> void:
+    _add_dungeon_tile(branch_anchors, 75, Vector2(-312, 24))
+    _add_dungeon_tile(branch_anchors, 63, Vector2(-264, 24))
+    _add_dungeon_tile(branch_anchors, 72, Vector2(-288, 72))
+
+func _build_blacksmith_anchor() -> void:
+    _add_dungeon_tile(branch_anchors, 103, Vector2(-560, 120))
+    _add_dungeon_tile(branch_anchors, 102, Vector2(-520, 128))
+    _add_tile(branch_anchors, 115, Vector2(-548, 72))
+
+func _build_garden_anchor() -> void:
+    _add_tile(branch_anchors, 131, Vector2(240, 24))
+    _add_tile(branch_anchors, 2, Vector2(336, 16))
+    _add_tile(branch_anchors, 2, Vector2(304, 64))
+    _add_dungeon_tile(branch_anchors, 114, Vector2(376, 56))
+
 func _build_signpost() -> void:
     _add_tile(signpost, 83, Vector2(432, 0))
     var label := Label.new()
@@ -127,6 +159,14 @@ func _build_gate() -> void:
 func _add_tile(parent: Node2D, tile_id: int, position: Vector2) -> Sprite2D:
     var sprite := Sprite2D.new()
     sprite.texture = _textures[tile_id]
+    sprite.position = position
+    sprite.scale = Vector2.ONE * TILE_SCALE
+    parent.add_child(sprite)
+    return sprite
+
+func _add_dungeon_tile(parent: Node2D, tile_id: int, position: Vector2) -> Sprite2D:
+    var sprite := Sprite2D.new()
+    sprite.texture = _dungeon_textures[tile_id]
     sprite.position = position
     sprite.scale = Vector2.ONE * TILE_SCALE
     parent.add_child(sprite)

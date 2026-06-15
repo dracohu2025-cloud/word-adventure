@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://e8k16n7x3qmqr"]
+[gd_scene load_steps=14 format=3 uid="uid://e8k16n7x3qmqr"]
 
 [ext_resource type="Script" path="res://src/world/village.gd" id="1_village"]
 [ext_resource type="PackedScene" uid="uid://c5k06n6x2qmqr" path="res://scenes/world/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" uid="uid://d7k16n7x3qmqr" path="res://scenes/world/npc.tscn" id="3_npc"]
 [ext_resource type="Script" path="res://src/world/village_visuals.gd" id="4_visuals"]
+[ext_resource type="PackedScene" path="res://scenes/ui/village_hud.tscn" id="5_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/battle_panel.tscn" id="6_battle"]
+[ext_resource type="PackedScene" path="res://scenes/world/boss_encounter.tscn" id="7_boss"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
 size = Vector2(1280, 64)
@@ -13,6 +16,18 @@ size = Vector2(64, 720)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gate"]
 size = Vector2(128, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_house_obstacle"]
+size = Vector2(144, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_obstacle"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prop_obstacle"]
+size = Vector2(40, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sign_obstacle"]
+size = Vector2(36, 36)
 
 [node name="Village" type="Node2D"]
 script = ExtResource("1_village")
@@ -27,6 +42,10 @@ color = Color(0.392157, 0.627451, 0.313726, 1)
 [node name="Visuals" type="Node2D" parent="."]
 script = ExtResource("4_visuals")
 
+[node name="VillageHUD" parent="." instance=ExtResource("5_hud")]
+
+[node name="BattlePanel" parent="." instance=ExtResource("6_battle")]
+
 [node name="Ground" type="Node2D" parent="Visuals"]
 
 [node name="MainRoad" type="Node2D" parent="Visuals"]
@@ -39,7 +58,107 @@ script = ExtResource("4_visuals")
 
 [node name="Stones" type="Node2D" parent="Visuals"]
 
+[node name="BranchAnchors" type="Node2D" parent="Visuals"]
+
 [node name="Signpost" type="Node2D" parent="Visuals"]
+
+[node name="ObstacleCollisions" type="Node2D" parent="."]
+
+[node name="HouseWest" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(-504, -24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/HouseWest"]
+shape = SubResource("RectangleShape2D_house_obstacle")
+
+[node name="HouseNorth" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(-264, -48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/HouseNorth"]
+shape = SubResource("RectangleShape2D_house_obstacle")
+
+[node name="TreeSouthwestA" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(-520, 184)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/TreeSouthwestA"]
+shape = SubResource("RectangleShape2D_tree_obstacle")
+
+[node name="TreeSouthwestB" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(-472, 184)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/TreeSouthwestB"]
+shape = SubResource("RectangleShape2D_tree_obstacle")
+
+[node name="TreeVillageCenter" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(-96, -24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/TreeVillageCenter"]
+shape = SubResource("RectangleShape2D_tree_obstacle")
+
+[node name="TreeSouthCenter" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(-112, 208)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/TreeSouthCenter"]
+shape = SubResource("RectangleShape2D_tree_obstacle")
+
+[node name="TreeNorthEast" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(288, -184)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/TreeNorthEast"]
+shape = SubResource("RectangleShape2D_tree_obstacle")
+
+[node name="TreeEast" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(432, 176)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/TreeEast"]
+shape = SubResource("RectangleShape2D_tree_obstacle")
+
+[node name="TreeFarNorthEast" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(520, -232)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/TreeFarNorthEast"]
+shape = SubResource("RectangleShape2D_tree_obstacle")
+
+[node name="TreeFarSouthEast" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(552, 224)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/TreeFarSouthEast"]
+shape = SubResource("RectangleShape2D_tree_obstacle")
+
+[node name="PropStump" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(-96, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/PropStump"]
+shape = SubResource("RectangleShape2D_prop_obstacle")
+
+[node name="PropBomb" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(160, 136)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/PropBomb"]
+shape = SubResource("RectangleShape2D_prop_obstacle")
+
+[node name="PropLog" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(272, 112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/PropLog"]
+shape = SubResource("RectangleShape2D_prop_obstacle")
+
+[node name="PropBarrel" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(360, 168)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/PropBarrel"]
+shape = SubResource("RectangleShape2D_prop_obstacle")
+
+[node name="PropMushrooms" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(168, -48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/PropMushrooms"]
+shape = SubResource("RectangleShape2D_prop_obstacle")
+
+[node name="ForestSign" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(432, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/ForestSign"]
+shape = SubResource("RectangleShape2D_sign_obstacle")
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -86,8 +205,46 @@ color = Color(0.6, 0.3, 0.2, 1)
 [node name="Player" parent="." instance=ExtResource("2_player")]
 position = Vector2(-400, 100)
 
-[node name="NPC" parent="." instance=ExtResource("3_npc")]
-position = Vector2(-200, 0)
+[node name="LibraryNPC" parent="." instance=ExtResource("3_npc")]
+position = Vector2(-216, 40)
+npc_name = "Librarian"
+quest_id = "library"
+challenge_type = "meaning"
+dialogue_lines = ["Librarian: Pages are fluttering through the shelves.", "Librarian: The magic book can seal runaway words.", "Librarian: Which word means this?"]
+puzzle_word = "book"
+puzzle_question = "书"
+puzzle_options = ["book", "magic", "forest", "sword"]
+puzzle_answer = "book"
+success_line = "Librarian: Good. Remember book when you need to capture a word."
+failure_line = "Librarian: The page slips away. Try the meaning again."
+
+[node name="BlacksmithNPC" parent="." instance=ExtResource("3_npc")]
+position = Vector2(-504, 88)
+npc_name = "Blacksmith"
+quest_id = "blacksmith"
+challenge_type = "spelling"
+dialogue_lines = ["Blacksmith: My forge inscription has been scrambled.", "Blacksmith: Spell the word and I can shape your first charm.", "Blacksmith: Write the English word for this meaning."]
+puzzle_word = "sword"
+puzzle_question = "剑"
+puzzle_answer = "sword"
+success_line = "Blacksmith: Clean spelling. Take this beginner charm."
+failure_line = "Blacksmith: The letters still need hammering into shape."
+
+[node name="GardenNPC" parent="." instance=ExtResource("3_npc")]
+position = Vector2(280, 32)
+npc_name = "Gardener"
+quest_id = "garden"
+challenge_type = "context"
+dialogue_lines = ["Gardener: The garden fence cannot stop the runaway book words.", "Gardener: Choose the word that blocks enemy attacks.", "Gardener: Restore this line for the garden guard."]
+puzzle_word = "shield"
+puzzle_question = "A ____ blocks enemy attacks."
+puzzle_options = ["shield", "sword", "water", "book"]
+puzzle_answer = "shield"
+success_line = "Gardener: The sentence stands firm. Remember shield when danger strikes."
+failure_line = "Gardener: That word does not quite guard the sentence."
+
+[node name="WordImpBoss" parent="." instance=ExtResource("7_boss")]
+position = Vector2(464, -72)
 
 [node name="Decorations" type="Node2D" parent="."]
 visible = false
