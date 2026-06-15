@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://f8k16n7x3qmqr"]
+
+[ext_resource type="Script" path="res://src/ui/dialogue_box.gd" id="1_dialogue"]
+
+[node name="DialogueBox" type="CanvasLayer"]
+script = ExtResource("1_dialogue")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -200.0
+offset_right = -40.0
+offset_bottom = -40.0
+
+[node name="SpeakerLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = 48.0
+text = "Speaker"
+
+[node name="BodyLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -28.0
+offset_right = -20.0
+offset_bottom = 28.0
+text = "Dialogue text goes here..."
+autowrap_mode = 3
+
+[node name="NextButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -56.0
+offset_right = -24.0
+offset_bottom = -16.0
+text = "Next"

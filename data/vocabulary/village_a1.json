@@ -1,0 +1,97 @@
+{
+  "pack_id": "village_a1",
+  "name": "Village Basics",
+  "difficulty": "A1",
+  "words": [
+    {
+      "word": "sword",
+      "phonetic": "/sɔːrd/",
+      "meaning": "剑",
+      "pos": "noun",
+      "example": "The hero raised his sword.",
+      "difficulty": 1,
+      "tags": ["weapon", "combat"]
+    },
+    {
+      "word": "shield",
+      "phonetic": "/ʃiːld/",
+      "meaning": "盾",
+      "pos": "noun",
+      "example": "A shield blocks enemy attacks.",
+      "difficulty": 1,
+      "tags": ["armor", "combat"]
+    },
+    {
+      "word": "village",
+      "phonetic": "/ˈvɪlɪdʒ/",
+      "meaning": "村庄",
+      "pos": "noun",
+      "example": "The village is peaceful at dawn.",
+      "difficulty": 1,
+      "tags": ["place"]
+    },
+    {
+      "word": "magic",
+      "phonetic": "/ˈmædʒɪk/",
+      "meaning": "魔法",
+      "pos": "noun",
+      "example": "She learned ancient magic.",
+      "difficulty": 1,
+      "tags": ["magic"]
+    },
+    {
+      "word": "quest",
+      "phonetic": "/kwest/",
+      "meaning": "任务；探索",
+      "pos": "noun",
+      "example": "He accepted a dangerous quest.",
+      "difficulty": 2,
+      "tags": ["adventure"]
+    },
+    {
+      "word": "potion",
+      "phonetic": "/ˈpoʊʃn/",
+      "meaning": "药水",
+      "pos": "noun",
+      "example": "Drink this potion to heal.",
+      "difficulty": 2,
+      "tags": ["item", "heal"]
+    },
+    {
+      "word": "monster",
+      "phonetic": "/ˈmɒnstər/",
+      "meaning": "怪物",
+      "pos": "noun",
+      "example": "A monster blocked the road.",
+      "difficulty": 1,
+      "tags": ["enemy"]
+    },
+    {
+      "word": "treasure",
+      "phonetic": "/ˈtreʒər/",
+      "meaning": "宝藏",
+      "pos": "noun",
+      "example": "They found hidden treasure.",
+      "difficulty": 2,
+      "tags": ["reward"]
+    },
+    {
+      "word": "bridge",
+      "phonetic": "/brɪdʒ/",
+      "meaning": "桥",
+      "pos": "noun",
+      "example": "Cross the bridge to enter the forest.",
+      "difficulty": 1,
+      "tags": ["place"]
+    },
+    {
+      "word": "danger",
+      "phonetic": "/ˈdeɪndʒər/",
+      "meaning": "危险",
+      "pos": "noun",
+      "example": "The cave is full of danger.",
+      "difficulty": 2,
+      "tags": ["status"]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://0ksvm5bt066v"]
+
+[ext_resource type="Script" path="res://src/ui/control_hints.gd" id="1_hints"]
+
+[node name="ControlHints" type="CanvasLayer"]
+script = ExtResource("1_hints")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -60.0
+offset_right = 420.0
+offset_bottom = -20.0
+
+[node name="HintLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = -12.0
+offset_bottom = -8.0
+text = "Controls"
+vertical_alignment = 1
