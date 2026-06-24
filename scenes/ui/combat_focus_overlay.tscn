@@ -1,0 +1,341 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://src/ui/combat_focus_overlay.gd" id="1_overlay"]
+[ext_resource type="Texture2D" path="res://assets/licensed/tiny_swords/ui/panels/Button_Disable_9Slides.png" id="2_settlement_panel"]
+[ext_resource type="Texture2D" path="res://assets/licensed/tiny_swords/ui/banners/Carved_9Slides.png" id="3_settlement_plate"]
+[ext_resource type="Texture2D" path="res://assets/licensed/tiny_swords/ui/buttons/Button_Hover_3Slides.png" id="4_settlement_button"]
+
+[node name="CombatFocusOverlay" type="CanvasLayer"]
+visible = false
+layer = 18
+script = ExtResource("1_overlay")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.02, 0.025, 0.02, 0.34)
+
+[node name="FocusPanel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -140.0
+offset_right = 260.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelFill" type="ColorRect" parent="FocusPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.045, 0.06, 0.04, 0.97)
+
+[node name="FrameTexture" type="NinePatchRect" parent="FocusPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="FocusPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = -24.0
+offset_bottom = 48.0
+text = "战斗开始"
+horizontal_alignment = 1
+
+[node name="PlayerAnchor" type="Control" parent="FocusPanel"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 76.0
+offset_top = 48.0
+offset_right = 236.0
+offset_bottom = 168.0
+mouse_filter = 2
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="FocusPanel/PlayerAnchor"]
+position = Vector2(80, 82)
+scale = Vector2(0.8, 0.8)
+
+[node name="EnemyAnchor" type="Control" parent="FocusPanel"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 284.0
+offset_top = 48.0
+offset_right = 444.0
+offset_bottom = 168.0
+mouse_filter = 2
+
+[node name="EnemySprite" type="AnimatedSprite2D" parent="FocusPanel/EnemyAnchor"]
+position = Vector2(80, 82)
+scale = Vector2(0.8, 0.8)
+
+[node name="PlayerStatus" type="Control" parent="FocusPanel"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 76.0
+offset_top = 56.0
+offset_right = 236.0
+offset_bottom = 272.0
+mouse_filter = 2
+
+[node name="PlayerNameLabel" type="Label" parent="FocusPanel/PlayerStatus"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 160.0
+offset_bottom = 24.0
+text = "你"
+horizontal_alignment = 1
+
+[node name="PlayerHPBar" type="Control" parent="FocusPanel/PlayerStatus"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 166.0
+offset_right = 140.0
+offset_bottom = 190.0
+mouse_filter = 2
+
+[node name="Frame" type="Panel" parent="FocusPanel/PlayerStatus/PlayerHPBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Fill" type="ColorRect" parent="FocusPanel/PlayerStatus/PlayerHPBar"]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 115.0
+offset_bottom = 19.0
+color = Color(0.8, 0.1, 0.12, 1)
+
+[node name="PlayerHPLabel" type="Label" parent="FocusPanel/PlayerStatus"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 0.0
+offset_top = 192.0
+offset_right = 160.0
+offset_bottom = 214.0
+text = "120/120"
+horizontal_alignment = 1
+
+[node name="EnemyStatus" type="Control" parent="FocusPanel"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 284.0
+offset_top = 56.0
+offset_right = 444.0
+offset_bottom = 272.0
+mouse_filter = 2
+
+[node name="EnemyNameLabel" type="Label" parent="FocusPanel/EnemyStatus"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 160.0
+offset_bottom = 24.0
+text = "Word Imp"
+horizontal_alignment = 1
+
+[node name="EnemyHPBar" type="Control" parent="FocusPanel/EnemyStatus"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 166.0
+offset_right = 140.0
+offset_bottom = 190.0
+mouse_filter = 2
+
+[node name="Frame" type="Panel" parent="FocusPanel/EnemyStatus/EnemyHPBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Fill" type="ColorRect" parent="FocusPanel/EnemyStatus/EnemyHPBar"]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 115.0
+offset_bottom = 19.0
+color = Color(0.8, 0.1, 0.12, 1)
+
+[node name="EnemyHPLabel" type="Label" parent="FocusPanel/EnemyStatus"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 0.0
+offset_top = 192.0
+offset_right = 160.0
+offset_bottom = 214.0
+text = "180/180"
+horizontal_alignment = 1
+
+[node name="DamageTextLayer" type="Control" parent="FocusPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SettlementPanel" type="Control" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -176.0
+offset_right = 300.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="FrameTexture" type="NinePatchRect" parent="SettlementPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_settlement_panel")
+patch_margin_left = 48
+patch_margin_top = 48
+patch_margin_right = 48
+patch_margin_bottom = 48
+modulate = Color(0.42, 0.47, 0.31, 0.98)
+
+[node name="TitleLabel" type="Label" parent="SettlementPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 28.0
+offset_right = 120.0
+offset_bottom = 62.0
+text = "战斗结算"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResultLabel" type="Label" parent="SettlementPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 56.0
+offset_top = 82.0
+offset_right = -56.0
+offset_bottom = 122.0
+text = "你获得了胜利。"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="RewardBackdrop" type="NinePatchRect" parent="SettlementPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 86.0
+offset_top = 126.0
+offset_right = -86.0
+offset_bottom = 286.0
+mouse_filter = 2
+texture = ExtResource("2_settlement_panel")
+patch_margin_left = 48
+patch_margin_top = 48
+patch_margin_right = 48
+patch_margin_bottom = 48
+modulate = Color(0.34, 0.30, 0.18, 0.92)
+
+[node name="RewardLabel" type="Label" parent="SettlementPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 112.0
+offset_top = 144.0
+offset_right = -112.0
+offset_bottom = 270.0
+text = "金币 +0"
+horizontal_alignment = 1
+vertical_alignment = 0
+autowrap_mode = 3
+
+[node name="ContinueButton" type="Button" parent="SettlementPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = 112.0
+offset_right = 74.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+text = ""
+
+[node name="ButtonTexture" type="NinePatchRect" parent="SettlementPanel/ContinueButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_settlement_button")
+patch_margin_left = 48
+patch_margin_top = 16
+patch_margin_right = 48
+patch_margin_bottom = 16
+
+[node name="ButtonLabel" type="Label" parent="SettlementPanel/ContinueButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "继续"
+horizontal_alignment = 1
+vertical_alignment = 1

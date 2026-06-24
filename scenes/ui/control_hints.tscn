@@ -13,15 +13,87 @@ offset_left = 20.0
 offset_top = -60.0
 offset_right = 420.0
 offset_bottom = -20.0
+mouse_filter = 1
 
-[node name="HintLabel" type="Label" parent="Panel"]
+[node name="FrameTexture" type="NinePatchRect" parent="Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = 8.0
-offset_right = -12.0
-offset_bottom = -8.0
-text = "Controls"
+grow_horizontal = 2
+grow_vertical = 2
+patch_margin_left = 18
+patch_margin_top = 14
+patch_margin_right = 18
+patch_margin_bottom = 14
+mouse_filter = 2
+
+[node name="KeyBackground" type="NinePatchRect" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_right = 76.0
+offset_bottom = 38.0
+patch_margin_left = 18
+patch_margin_top = 14
+patch_margin_right = 18
+patch_margin_bottom = 14
+mouse_filter = 2
+
+[node name="HintLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 8.0
+offset_right = 68.0
+offset_bottom = 38.0
+text = "空格/E"
+horizontal_alignment = 1
 vertical_alignment = 1
+clip_text = true
+
+[node name="Divider" type="ColorRect" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_left = 77.0
+offset_top = 8.0
+offset_right = 79.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.118, 0.169, 0.145, 0.24)
+
+[node name="ActionHighlight" type="NinePatchRect" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_left = 80.0
+offset_right = 156.0
+offset_bottom = 38.0
+patch_margin_left = 24
+patch_margin_right = 24
+mouse_filter = 2
+
+[node name="ActionLabel" type="Label" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_left = 88.0
+offset_right = 148.0
+offset_bottom = 38.0
+text = "交谈"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="ActionButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 80.0
+offset_right = 156.0
+offset_bottom = 38.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_type_variation = &"FlatPromptButton"
+text = ""
+flat = true

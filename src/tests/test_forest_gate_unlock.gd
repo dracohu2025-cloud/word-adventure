@@ -24,11 +24,13 @@ func _ready() -> void:
 
     boss.start_interaction()
     assert(CombatManager.is_battle_active(), "Interacting with Word Imp should start combat")
-    while CombatManager.get_enemy_hp() > 4:
-        CombatManager.apply_answer_result(true, "attack")
-    CombatManager.apply_answer_result(true, "capture")
+    var steps := 0
+    while CombatManager.is_battle_active() and steps < 120:
+        CombatManager.advance_battle(0.5)
+        steps += 1
     await get_tree().process_frame
-    assert(gate_collision.disabled, "Forest gate should open after the Word Imp is captured")
+    assert(steps < 120, "Word Imp battle should resolve within the test budget")
+    assert(gate_collision.disabled, "Forest gate should open after the Word Imp is defeated")
 
     print("Forest gate unlock regression test PASSED")
     AudioManager.stop_music()

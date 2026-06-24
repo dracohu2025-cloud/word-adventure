@@ -13,6 +13,7 @@ func _ready() -> void:
         "WordImpBoss",
         "Visuals/Ground",
         "Visuals/MainRoad",
+        "Visuals/HouseRoads",
         "Visuals/ExitRoad",
         "Visuals/Houses",
         "Visuals/Trees",

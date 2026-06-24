@@ -1,0 +1,217 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://src/ui/character_panel.gd" id="1_character"]
+[ext_resource type="PackedScene" path="res://scenes/ui/item_slot.tscn" id="2_slot"]
+[ext_resource type="PackedScene" path="res://scenes/ui/item_tooltip.tscn" id="3_tooltip"]
+
+[node name="CharacterPanel" type="CanvasLayer"]
+visible = false
+layer = 20
+script = ExtResource("1_character")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 82.0
+offset_top = 68.0
+offset_right = 506.0
+offset_bottom = 626.0
+mouse_filter = 0
+
+[node name="FrameTexture" type="NinePatchRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 24.0
+offset_top = 20.0
+offset_right = 230.0
+offset_bottom = 50.0
+text = "角色"
+
+[node name="CloseButton" type="Button" parent="Panel"]
+layout_mode = 1
+offset_left = 364.0
+offset_top = 16.0
+offset_right = 402.0
+offset_bottom = 52.0
+text = "X"
+
+[node name="NameLabel" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 152.0
+offset_top = 68.0
+offset_right = 300.0
+offset_bottom = 94.0
+text = "Apprentice"
+horizontal_alignment = 1
+
+[node name="ClassLabel" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 152.0
+offset_top = 94.0
+offset_right = 300.0
+offset_bottom = 118.0
+text = "Lv.1  战士"
+horizontal_alignment = 1
+
+[node name="AvatarIcon" type="TextureRect" parent="Panel"]
+layout_mode = 1
+offset_left = 170.0
+offset_top = 126.0
+offset_right = 282.0
+offset_bottom = 238.0
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="SlotHead" parent="Panel" instance=ExtResource("2_slot")]
+layout_mode = 1
+offset_left = 38.0
+offset_top = 76.0
+offset_right = 94.0
+offset_bottom = 132.0
+
+[node name="SlotAmulet" parent="Panel" instance=ExtResource("2_slot")]
+layout_mode = 1
+offset_left = 38.0
+offset_top = 142.0
+offset_right = 94.0
+offset_bottom = 198.0
+
+[node name="SlotChest" parent="Panel" instance=ExtResource("2_slot")]
+layout_mode = 1
+offset_left = 38.0
+offset_top = 208.0
+offset_right = 94.0
+offset_bottom = 264.0
+
+[node name="SlotHands" parent="Panel" instance=ExtResource("2_slot")]
+layout_mode = 1
+offset_left = 38.0
+offset_top = 274.0
+offset_right = 94.0
+offset_bottom = 330.0
+
+[node name="SlotWeapon" parent="Panel" instance=ExtResource("2_slot")]
+layout_mode = 1
+offset_left = 326.0
+offset_top = 76.0
+offset_right = 382.0
+offset_bottom = 132.0
+
+[node name="SlotOffhand" parent="Panel" instance=ExtResource("2_slot")]
+layout_mode = 1
+offset_left = 326.0
+offset_top = 142.0
+offset_right = 382.0
+offset_bottom = 198.0
+
+[node name="SlotLegs" parent="Panel" instance=ExtResource("2_slot")]
+layout_mode = 1
+offset_left = 326.0
+offset_top = 208.0
+offset_right = 382.0
+offset_bottom = 264.0
+
+[node name="SlotFeet" parent="Panel" instance=ExtResource("2_slot")]
+layout_mode = 1
+offset_left = 326.0
+offset_top = 274.0
+offset_right = 382.0
+offset_bottom = 330.0
+
+[node name="SlotRing" parent="Panel" instance=ExtResource("2_slot")]
+layout_mode = 1
+offset_left = 84.0
+offset_top = 348.0
+offset_right = 140.0
+offset_bottom = 404.0
+
+[node name="SlotCloak" parent="Panel" instance=ExtResource("2_slot")]
+layout_mode = 1
+offset_left = 150.0
+offset_top = 348.0
+offset_right = 206.0
+offset_bottom = 404.0
+
+[node name="SlotTrinket" parent="Panel" instance=ExtResource("2_slot")]
+layout_mode = 1
+offset_left = 216.0
+offset_top = 348.0
+offset_right = 272.0
+offset_bottom = 404.0
+
+[node name="SlotRelic" parent="Panel" instance=ExtResource("2_slot")]
+layout_mode = 1
+offset_left = 282.0
+offset_top = 348.0
+offset_right = 338.0
+offset_bottom = 404.0
+
+[node name="AttackTitle" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 28.0
+offset_top = 424.0
+offset_right = 118.0
+offset_bottom = 446.0
+text = "攻击"
+
+[node name="AttackStatsLabel" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 28.0
+offset_top = 448.0
+offset_right = 144.0
+offset_bottom = 520.0
+text = ""
+
+[node name="DefenseTitle" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 156.0
+offset_top = 424.0
+offset_right = 246.0
+offset_bottom = 446.0
+text = "防御"
+
+[node name="DefenseStatsLabel" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 156.0
+offset_top = 448.0
+offset_right = 246.0
+offset_bottom = 520.0
+text = ""
+
+[node name="SurvivalTitle" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 278.0
+offset_top = 424.0
+offset_right = 368.0
+offset_bottom = 446.0
+text = "生存"
+
+[node name="SurvivalStatsLabel" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 278.0
+offset_top = 448.0
+offset_right = 402.0
+offset_bottom = 520.0
+text = ""
+
+[node name="AttributeStatsLabel" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 156.0
+offset_top = 250.0
+offset_right = 300.0
+offset_bottom = 330.0
+text = ""
+horizontal_alignment = 1
+
+[node name="ItemTooltip" parent="." instance=ExtResource("3_tooltip")]

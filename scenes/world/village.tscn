@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://e8k16n7x3qmqr"]
+[gd_scene load_steps=18 format=3 uid="uid://e8k16n7x3qmqr"]
 
 [ext_resource type="Script" path="res://src/world/village.gd" id="1_village"]
 [ext_resource type="PackedScene" uid="uid://c5k06n6x2qmqr" path="res://scenes/world/player.tscn" id="2_player"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/village_hud.tscn" id="5_hud"]
 [ext_resource type="PackedScene" path="res://scenes/ui/battle_panel.tscn" id="6_battle"]
 [ext_resource type="PackedScene" path="res://scenes/world/boss_encounter.tscn" id="7_boss"]
+[ext_resource type="PackedScene" path="res://scenes/ui/combat_focus_overlay.tscn" id="8_focus"]
+[ext_resource type="PackedScene" path="res://scenes/ui/character_panel.tscn" id="9_character"]
+[ext_resource type="PackedScene" path="res://scenes/ui/inventory_panel.tscn" id="10_inventory"]
+[ext_resource type="PackedScene" path="res://scenes/world/chapter_exit.tscn" id="11_exit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
 size = Vector2(1280, 64)
@@ -46,9 +50,17 @@ script = ExtResource("4_visuals")
 
 [node name="BattlePanel" parent="." instance=ExtResource("6_battle")]
 
+[node name="CombatFocusOverlay" parent="." instance=ExtResource("8_focus")]
+
+[node name="CharacterPanel" parent="." instance=ExtResource("9_character")]
+
+[node name="InventoryPanel" parent="." instance=ExtResource("10_inventory")]
+
 [node name="Ground" type="Node2D" parent="Visuals"]
 
 [node name="MainRoad" type="Node2D" parent="Visuals"]
+
+[node name="HouseRoads" type="Node2D" parent="Visuals"]
 
 [node name="ExitRoad" type="Node2D" parent="Visuals"]
 
@@ -74,6 +86,12 @@ shape = SubResource("RectangleShape2D_house_obstacle")
 position = Vector2(-264, -48)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/HouseNorth"]
+shape = SubResource("RectangleShape2D_house_obstacle")
+
+[node name="HouseGarden" type="StaticBody2D" parent="ObstacleCollisions"]
+position = Vector2(240, -48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/HouseGarden"]
 shape = SubResource("RectangleShape2D_house_obstacle")
 
 [node name="TreeSouthwestA" type="StaticBody2D" parent="ObstacleCollisions"]
@@ -124,20 +142,14 @@ position = Vector2(552, 224)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/TreeFarSouthEast"]
 shape = SubResource("RectangleShape2D_tree_obstacle")
 
-[node name="PropStump" type="StaticBody2D" parent="ObstacleCollisions"]
-position = Vector2(-96, 160)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/PropStump"]
-shape = SubResource("RectangleShape2D_prop_obstacle")
-
 [node name="PropBomb" type="StaticBody2D" parent="ObstacleCollisions"]
-position = Vector2(160, 136)
+position = Vector2(160, 168)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/PropBomb"]
 shape = SubResource("RectangleShape2D_prop_obstacle")
 
 [node name="PropLog" type="StaticBody2D" parent="ObstacleCollisions"]
-position = Vector2(272, 112)
+position = Vector2(304, 152)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleCollisions/PropLog"]
 shape = SubResource("RectangleShape2D_prop_obstacle")
@@ -202,46 +214,57 @@ color = Color(0.6, 0.3, 0.2, 1)
 
 [node name="GateVisual" type="Node2D" parent="ExitGate"]
 
+[node name="ChapterExit" parent="." instance=ExtResource("11_exit")]
+position = Vector2(528, 0)
+target_scene_path = "res://scenes/world/whispering_forest.tscn"
+action_text = "进入森林"
+
 [node name="Player" parent="." instance=ExtResource("2_player")]
-position = Vector2(-400, 100)
+position = Vector2(-400, 96)
 
 [node name="LibraryNPC" parent="." instance=ExtResource("3_npc")]
-position = Vector2(-216, 40)
-npc_name = "Librarian"
+position = Vector2(-264, 52)
+npc_name = "图书管理员"
 quest_id = "library"
 challenge_type = "meaning"
-dialogue_lines = ["Librarian: Pages are fluttering through the shelves.", "Librarian: The magic book can seal runaway words.", "Librarian: Which word means this?"]
+dialogue_lines = ["图书管理员：魔法书的书页正在村里乱飞。", "图书管理员：先找回 book 这页，它能帮你收服失控的单词。", "图书管理员：看中文意思，选出正确的英文单词。"]
 puzzle_word = "book"
 puzzle_question = "书"
 puzzle_options = ["book", "magic", "forest", "sword"]
 puzzle_answer = "book"
-success_line = "Librarian: Good. Remember book when you need to capture a word."
-failure_line = "Librarian: The page slips away. Try the meaning again."
+success_line = "图书管理员：答对了！记住 book，之后可以用它收服单词怪。"
+failure_line = "图书管理员：这页又飞走了，再看一眼中文意思。"
+tiny_swords_idle_path = "res://assets/licensed/tiny_swords/units/monk/Idle.png"
+tiny_swords_frame_count = 6
 
 [node name="BlacksmithNPC" parent="." instance=ExtResource("3_npc")]
-position = Vector2(-504, 88)
-npc_name = "Blacksmith"
+position = Vector2(-504, 52)
+npc_name = "铁匠"
 quest_id = "blacksmith"
 challenge_type = "spelling"
-dialogue_lines = ["Blacksmith: My forge inscription has been scrambled.", "Blacksmith: Spell the word and I can shape your first charm.", "Blacksmith: Write the English word for this meaning."]
+dialogue_lines = ["铁匠：炉子上的英文铭文被打乱了。", "铁匠：你需要拼出 sword，才能唤醒攻击用的剑。", "铁匠：根据中文意思，输入正确的英文单词。"]
 puzzle_word = "sword"
 puzzle_question = "剑"
 puzzle_answer = "sword"
-success_line = "Blacksmith: Clean spelling. Take this beginner charm."
-failure_line = "Blacksmith: The letters still need hammering into shape."
+success_line = "铁匠：拼得漂亮！sword 会成为你的攻击力量。"
+failure_line = "铁匠：字母还没敲准，再试一次。"
+tiny_swords_idle_path = "res://assets/licensed/tiny_swords/units/pawn/Pawn_Idle_Hammer.png"
+tiny_swords_frame_count = 8
 
 [node name="GardenNPC" parent="." instance=ExtResource("3_npc")]
-position = Vector2(280, 32)
-npc_name = "Gardener"
+position = Vector2(240, 52)
+npc_name = "园丁"
 quest_id = "garden"
 challenge_type = "context"
-dialogue_lines = ["Gardener: The garden fence cannot stop the runaway book words.", "Gardener: Choose the word that blocks enemy attacks.", "Gardener: Restore this line for the garden guard."]
+dialogue_lines = ["园丁：花园的护栏挡不住失控的单词。", "园丁：你需要记住 shield，它能帮你防御。", "园丁：把合适的英文单词填进句子里。"]
 puzzle_word = "shield"
 puzzle_question = "A ____ blocks enemy attacks."
 puzzle_options = ["shield", "sword", "water", "book"]
 puzzle_answer = "shield"
-success_line = "Gardener: The sentence stands firm. Remember shield when danger strikes."
-failure_line = "Gardener: That word does not quite guard the sentence."
+success_line = "园丁：没错，shield 可以挡住攻击。"
+failure_line = "园丁：这个词还挡不住危险，再想想。"
+tiny_swords_idle_path = "res://assets/licensed/tiny_swords/units/pawn/Pawn_Idle_Wood.png"
+tiny_swords_frame_count = 8
 
 [node name="WordImpBoss" parent="." instance=ExtResource("7_boss")]
 position = Vector2(464, -72)

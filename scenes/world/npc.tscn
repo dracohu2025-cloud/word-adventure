@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://d7k16n7x3qmqr"]
+[gd_scene load_steps=5 format=3 uid="uid://d7k16n7x3qmqr"]
 
 [ext_resource type="Script" path="res://src/world/npc.gd" id="1_npc"]
 [ext_resource type="Texture2D" uid="uid://2wmtwdy74erw" path="res://assets/characters/npc_villager.png" id="2_npc_tex"]
-[ext_resource type="Texture2D" path="res://assets/third_party/kenney_game_icons/PNG/White/2x/exclamation.png" id="3_marker"]
-[ext_resource type="Texture2D" path="res://assets/third_party/kenney_game_icons/PNG/Black/2x/exclamation.png" id="4_marker_shadow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npc"]
 size = Vector2(112, 112)
@@ -13,30 +11,51 @@ size = Vector2(28, 36)
 
 [node name="NPC" type="Area2D" groups=["npc"]]
 script = ExtResource("1_npc")
-npc_name = "Elder"
-dialogue_lines = ["Elder: The bridge to the east has been sealed by the Forgetting.", "Elder: Answer my riddle, and the path shall reopen.", "Elder: What do warriors carry into battle to defend themselves?"]
+npc_name = "长者"
+dialogue_lines = ["长者：通往东边森林的路被遗忘魔法封住了。", "长者：回答我的问题，道路就会重新打开。", "长者：战士用什么来保护自己？"]
 puzzle_word = "shield"
-puzzle_question = "What do warriors carry into battle to defend themselves?"
+puzzle_question = "战士用什么保护自己？"
 puzzle_options = ["sword", "shield", "potion", "bridge"]
 puzzle_answer = "shield"
-success_line = "Elder: A shield! The seal breaks. You may pass."
-failure_line = "Elder: That is not the answer. Speak with me again."
+success_line = "长者：是 shield！封印松动了。"
+failure_line = "长者：还不对，再想想保护自己的东西。"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_npc_tex")
 
+[node name="TinySwordsSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -18)
+scale = Vector2(0.5, 0.5)
+
 [node name="InteractionMarker" type="Node2D" parent="."]
-position = Vector2(0, -32)
+position = Vector2(0, -54)
 z_index = 20
 
-[node name="Shadow" type="Sprite2D" parent="InteractionMarker"]
-scale = Vector2(0.54, 0.54)
-texture = ExtResource("4_marker_shadow")
+[node name="Shadow" type="ColorRect" parent="InteractionMarker"]
+offset_left = -11.0
+offset_top = -21.0
+offset_right = 11.0
+offset_bottom = 3.0
+color = Color(0.12, 0.08, 0.04, 0.86)
 
-[node name="Icon" type="Sprite2D" parent="InteractionMarker"]
-scale = Vector2(0.43, 0.43)
-modulate = Color(1, 0.831373, 0.227451, 1)
-texture = ExtResource("3_marker")
+[node name="Bubble" type="ColorRect" parent="InteractionMarker"]
+offset_left = -8.0
+offset_top = -24.0
+offset_right = 8.0
+offset_bottom = -2.0
+color = Color(1, 0.796078, 0.156863, 1)
+
+[node name="Icon" type="Label" parent="InteractionMarker"]
+offset_left = -8.0
+offset_top = -25.0
+offset_right = 8.0
+offset_bottom = -1.0
+theme_override_colors/font_color = Color(0.145098, 0.0862745, 0.0352941, 1)
+theme_override_font_sizes/font_size = 18
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_npc")

@@ -10,6 +10,9 @@ func _ready() -> void:
     QuestManager.complete_branch("library")
     assert(QuestManager.is_branch_completed("library"), "Library branch should be completed")
     assert(QuestManager.get_book_page_count() == 1, "One branch should grant one page")
+    if AudioManager.get_last_sfx_stream_path() != AudioManager.SFX_QUEST_REWARD:
+        _fail("Completing a branch should play quest reward SFX")
+        return
 
     QuestManager.complete_branch("blacksmith")
     QuestManager.complete_branch("garden")
@@ -21,3 +24,7 @@ func _ready() -> void:
 
     print("Quest manager regression test PASSED")
     get_tree().quit()
+
+func _fail(message: String) -> void:
+    push_error(message)
+    get_tree().quit(1)

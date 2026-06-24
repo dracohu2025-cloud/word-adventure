@@ -34,30 +34,30 @@ func build_challenge(word: String, challenge_type: String) -> Dictionary:
             return {
                 "challenge_type": "meaning",
                 "word": word,
-                "question": data.get("meaning", ""),
+                "question": "选择“%s”对应的英文单词。" % data.get("meaning", ""),
                 "options": data.get("meaning_options", _fallback_options(word)),
                 "answer": word,
-                "success_line": "The page glows with the correct word.",
-                "failure_line": "The letters scatter. Try again.",
+                "success_line": "答对了，书页亮起来了。",
+                "failure_line": "字母还在乱飞，再试一次。",
             }
         "spelling":
             return {
                 "challenge_type": "spelling",
                 "word": word,
-                "question": data.get("meaning", ""),
+                "question": "请输入“%s”对应的英文单词。" % data.get("meaning", ""),
                 "answer": word,
-                "success_line": "The spelling settles into the book.",
-                "failure_line": "The inscription is still scrambled.",
+                "success_line": "拼写正确，文字回到了书页上。",
+                "failure_line": "拼写还不对，再检查一下。",
             }
         "context":
             return {
                 "challenge_type": "context",
                 "word": word,
-                "question": data.get("context_prompt", data.get("example", "")),
+                "question": "选择能填入句子的英文单词：\n%s" % data.get("context_prompt", data.get("example", "")),
                 "options": data.get("context_options", _fallback_options(word)),
                 "answer": word,
-                "success_line": "The sentence is restored.",
-                "failure_line": "That word does not fit here yet.",
+                "success_line": "句子恢复完整了。",
+                "failure_line": "这个词还不适合这里。",
             }
     return {}
 

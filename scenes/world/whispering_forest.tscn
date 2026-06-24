@@ -1,0 +1,113 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://src/world/whispering_forest.gd" id="1_forest"]
+[ext_resource type="Script" path="res://src/world/whispering_forest_visuals.gd" id="2_visuals"]
+[ext_resource type="PackedScene" uid="uid://c5k06n6x2qmqr" path="res://scenes/world/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://scenes/ui/village_hud.tscn" id="4_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/battle_panel.tscn" id="5_battle"]
+[ext_resource type="PackedScene" path="res://scenes/ui/combat_focus_overlay.tscn" id="6_focus"]
+[ext_resource type="PackedScene" path="res://scenes/ui/character_panel.tscn" id="7_character"]
+[ext_resource type="PackedScene" path="res://scenes/ui/inventory_panel.tscn" id="8_inventory"]
+[ext_resource type="PackedScene" uid="uid://d7k16n7x3qmqr" path="res://scenes/world/npc.tscn" id="9_npc"]
+[ext_resource type="PackedScene" path="res://scenes/world/enemy_encounter.tscn" id="10_enemy"]
+[ext_resource type="PackedScene" path="res://scenes/world/supply_cache.tscn" id="11_cache"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
+size = Vector2(1280, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_side_wall"]
+size = Vector2(64, 720)
+
+[node name="WhisperingForest" type="Node2D"]
+script = ExtResource("1_forest")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.28, 0.5, 0.25, 1)
+
+[node name="Visuals" type="Node2D" parent="."]
+script = ExtResource("2_visuals")
+
+[node name="VillageHUD" parent="." instance=ExtResource("4_hud")]
+
+[node name="BattlePanel" parent="." instance=ExtResource("5_battle")]
+
+[node name="CombatFocusOverlay" parent="." instance=ExtResource("6_focus")]
+
+[node name="CharacterPanel" parent="." instance=ExtResource("7_character")]
+
+[node name="InventoryPanel" parent="." instance=ExtResource("8_inventory")]
+
+[node name="Ground" type="Node2D" parent="Visuals"]
+
+[node name="Road" type="Node2D" parent="Visuals"]
+
+[node name="Trees" type="Node2D" parent="Visuals"]
+
+[node name="Props" type="Node2D" parent="Visuals"]
+
+[node name="Signpost" type="Node2D" parent="Visuals"]
+
+[node name="DeepGate" type="Node2D" parent="Visuals"]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, -328)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 328)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(-608, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+shape = SubResource("RectangleShape2D_side_wall")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(608, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+shape = SubResource("RectangleShape2D_side_wall")
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector2(-520, 96)
+
+[node name="ForestGuideNPC" parent="." instance=ExtResource("9_npc")]
+position = Vector2(-420, 52)
+npc_name = "守林人"
+challenge_type = "meaning"
+dialogue_lines = ["守林人：欢迎来到低语森林。", "守林人：这里的树会记住每个经过的人。", "守林人：先找回 tree 这个真名，森林才会愿意让你继续前进。"]
+puzzle_word = "tree"
+puzzle_question = "树"
+puzzle_options = ["tree", "stone", "book", "fire"]
+puzzle_answer = "tree"
+success_line = "守林人：没错，tree 就是树。听，森林的低语变清楚了一点。"
+failure_line = "守林人：再看看周围，最高的那些绿色朋友叫什么？"
+tiny_swords_idle_path = "res://assets/licensed/tiny_swords/units/pawn/Pawn_Idle_Wood.png"
+tiny_swords_frame_count = 8
+
+[node name="LeafImp" parent="." instance=ExtResource("10_enemy")]
+position = Vector2(144, 52)
+enemy_id = "leaf_imp"
+enemy_name = "Leaf Imp"
+max_hp = 90
+attack_power = 10
+defense = 4
+gold_reward = 6
+experience_reward = 12
+
+[node name="ForestSupplyCache" parent="." instance=ExtResource("11_cache")]
+position = Vector2(144, 192)
+item_id = "minor_healing_potion"
+item_quantity = 1
+gold_reward = 4

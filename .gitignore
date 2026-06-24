@@ -23,6 +23,9 @@ mono_crash.*.json
 .superpowers/
 .playwright-mcp/
 .spec-workflow/
+.spec-workflow-mcp/
+external_assets/
+assets/licensed/
 
 # Build artifacts
 build/

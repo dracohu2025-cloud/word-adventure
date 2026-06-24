@@ -211,6 +211,12 @@ First version does not need a full quest log UI. It may use:
 
 ## Normal Combat
 
+Current status:
+
+- The answer-driven combat loop below is a historical first-pass idea.
+- Current combat direction is real-time stat-driven combat. See `docs/superpowers/specs/2026-06-16-real-time-stat-combat-design.md`.
+- Vocabulary learning remains in NPC tasks, puzzles, rewards, equipment unlocks, and story progression.
+
 Purpose: make vocabulary answers feel like spells.
 
 Normal combat should be quick. It should teach the relation between answers and battle outcomes without slowing the village flow.
@@ -308,14 +314,17 @@ The first implementation may use local GDScript dictionaries or JSON resources. 
 
 ## Asset Strategy
 
+Status note: this section records the first open-source asset plan before the project switched the beginner village's primary art family to Tiny Swords. Current asset policy is defined in `requirement.md`, `design/assets/asset-manifest.md`, and `docs/visual-asset-usage.md`.
+
 Asset priority:
 
-1. Existing CC0 open-source assets already in the project.
-2. Additional low-risk open-source assets: CC0, MIT, or CC-BY with attribution.
-3. Generated assets via image generation only when open-source assets do not cover a key concept.
+1. Tiny Swords licensed assets already selected into the project.
+2. Existing CC0 / MIT / CC-BY open-source assets as fallback.
+3. Generated assets only when approved asset sources do not cover a key concept.
 
 Current local open-source asset coverage:
 
+- Tiny Swords: current primary village, character, enemy, prop, and UI style family.
 - Kenney Tiny Town: village terrain, houses, roads, trees, fences, signs, props.
 - Kenney Tiny Dungeon: simple characters, dungeon props, some monsters, weapons, shields, items.
 - Kenney Game Icons: UI icons and interaction markers.
@@ -330,8 +339,8 @@ Likely generated asset candidates:
 
 Style rule:
 
-- Village map and ordinary props should stay close to the existing 16x16 Kenney pixel style.
-- Key monsters and magic book visuals may use a slightly more expressive 32x32 RPG pixel style if needed.
+- Village map, characters, enemies, props, and UI should stay close to the Tiny Swords style family.
+- Kenney or other fallback assets should only be used when they are visually compatible and documented.
 
 Every third-party or generated asset must be recorded in the asset credits documentation with source, license or generation notes, local path, and modification notes.
 

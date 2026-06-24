@@ -49,7 +49,10 @@ func _complete_choice_branch(npc: Node, answer: String) -> void:
     await _advance_dialogue_lines(3)
     assert(GameManager.current_state == GameManager.GameState.PUZZLE, "Branch should request a puzzle")
     ChoicePuzzle._on_option_selected(answer)
-    await get_tree().create_timer(1.6).timeout
+    await get_tree().process_frame
+    assert(GameManager.current_state == GameManager.GameState.DIALOGUE, "Puzzle result should return to NPC dialogue")
+    DialogueManager.advance()
+    await get_tree().process_frame
 
 func _complete_spelling_branch(npc: Node, answer: String) -> void:
     npc.start_interaction()
@@ -57,7 +60,10 @@ func _complete_spelling_branch(npc: Node, answer: String) -> void:
     assert(GameManager.current_state == GameManager.GameState.PUZZLE, "Branch should request a spelling puzzle")
     ChoicePuzzle.spelling_input.text = answer
     ChoicePuzzle._on_submit_pressed()
-    await get_tree().create_timer(1.6).timeout
+    await get_tree().process_frame
+    assert(GameManager.current_state == GameManager.GameState.DIALOGUE, "Spelling result should return to NPC dialogue")
+    DialogueManager.advance()
+    await get_tree().process_frame
 
 func _advance_dialogue_lines(count: int) -> void:
     for i in range(count):

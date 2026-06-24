@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/ui/enemy_status_bar.gd" id="1_status"]
+
+[node name="EnemyStatusBar" type="Node2D"]
+position = Vector2(0, -72)
+z_index = 30
+script = ExtResource("1_status")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -54.0
+offset_top = -24.0
+offset_right = 54.0
+offset_bottom = 26.0
+mouse_filter = 2
+
+[node name="NameLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = 18.0
+text = "Enemy"
+horizontal_alignment = 1
+
+[node name="HPBar" type="ProgressBar" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 21.0
+offset_right = -8.0
+offset_bottom = 33.0
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="HPLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_top = 34.0
+offset_right = -4.0
+offset_bottom = 48.0
+text = "100/100"
+horizontal_alignment = 1

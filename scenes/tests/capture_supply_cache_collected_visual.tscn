@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/tests/capture_supply_cache_collected_visual.gd" id="1_capture"]
+
+[node name="CaptureSupplyCacheCollectedVisual" type="Node"]
+script = ExtResource("1_capture")

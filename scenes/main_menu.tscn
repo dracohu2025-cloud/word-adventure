@@ -1,84 +1,357 @@
 [gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://src/ui/main_menu.gd" id="1_main_menu"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_3w4qv"]
-font_size = 48
-font_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
-bg_color = Color(0.2, 0.4, 0.6, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.4, 0.7, 1, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
-bg_color = Color(0.3, 0.55, 0.8, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.6, 0.85, 1, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[ext_resource type="Texture2D" path="res://assets/story/prologue_open_magic_book.png" id="2_magic_book"]
+[ext_resource type="Texture2D" path="res://assets/story/prologue_floating_page.png" id="3_page"]
+[ext_resource type="Texture2D" path="res://assets/story/prologue_magic_spark.png" id="4_spark"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_main_menu")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Root" type="Control" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-color = Color(0.1, 0.1, 0.15, 1)
+color = Color(0.03, 0.04, 0.06, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="DeskBand" type="ColorRect" parent="Root"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -150.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.16, 0.09, 0.05, 1)
+
+[node name="Atmosphere" type="Control" parent="Root"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-layout_mode = 2
-theme_override_constants/separation = 24
+[node name="SparkLeft" type="TextureRect" parent="Root/Atmosphere"]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 120.0
+offset_right = 262.0
+offset_bottom = 152.0
+mouse_filter = 2
+texture = ExtResource("4_spark")
+stretch_mode = 5
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
+[node name="SparkRight" type="TextureRect" parent="Root/Atmosphere"]
+layout_mode = 0
+offset_left = 1040.0
+offset_top = 116.0
+offset_right = 1072.0
+offset_bottom = 148.0
+mouse_filter = 2
+texture = ExtResource("4_spark")
+stretch_mode = 5
+
+[node name="PageLeft" type="TextureRect" parent="Root/Atmosphere"]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 228.0
+offset_right = 374.0
+offset_bottom = 292.0
+rotation = -0.32
+mouse_filter = 2
+texture = ExtResource("3_page")
+stretch_mode = 5
+
+[node name="PageRight" type="TextureRect" parent="Root/Atmosphere"]
+layout_mode = 0
+offset_left = 1090.0
+offset_top = 224.0
+offset_right = 1154.0
+offset_bottom = 288.0
+rotation = 0.22
+mouse_filter = 2
+texture = ExtResource("3_page")
+stretch_mode = 5
+
+[node name="HeroBook" type="TextureRect" parent="Root"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 176.0
+offset_right = 618.0
+offset_bottom = 512.0
+mouse_filter = 2
+texture = ExtResource("2_magic_book")
+stretch_mode = 5
+
+[node name="HeroTitle" type="Label" parent="Root"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 56.0
+offset_right = 660.0
+offset_bottom = 112.0
 text = "Word Adventures"
-label_settings = SubResource("LabelSettings_3w4qv")
+
+[node name="HeroChineseTitle" type="Label" parent="Root"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 116.0
+offset_right = 660.0
+offset_bottom = 164.0
+text = "单词冒险"
+
+[node name="HeroCopyPanel" type="Panel" parent="Root"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 512.0
+offset_right = 690.0
+offset_bottom = 644.0
+
+[node name="HeroCopy" type="Label" parent="Root/HeroCopyPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = 20.0
+offset_right = -28.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "《万语之书》散落了三页。前往书灯村，和图书管理员、铁匠、园丁一起找回书页，解开森林入口的封印。"
+autowrap_mode = 3
+
+[node name="MenuPanel" type="Panel" parent="Root"]
+layout_mode = 0
+offset_left = 760.0
+offset_top = 104.0
+offset_right = 1168.0
+offset_bottom = 644.0
+
+[node name="MenuTitle" type="Label" parent="Root/MenuPanel"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 28.0
+offset_right = 374.0
+offset_bottom = 72.0
+text = "开始冒险"
+
+[node name="MenuSubtitle" type="Label" parent="Root/MenuPanel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 76.0
+offset_right = 374.0
+offset_bottom = 112.0
+text = "第一站：书灯村"
+
+[node name="MenuButtons" type="VBoxContainer" parent="Root/MenuPanel"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 138.0
+offset_right = 374.0
+offset_bottom = 436.0
+theme_override_constants/separation = 14
+
+[node name="NewGameButton" type="Button" parent="Root/MenuPanel/MenuButtons"]
+layout_mode = 2
+custom_minimum_size = Vector2(340, 48)
+text = "新游戏"
+
+[node name="ContinueButton" type="Button" parent="Root/MenuPanel/MenuButtons"]
+layout_mode = 2
+custom_minimum_size = Vector2(340, 48)
+disabled = true
+text = "继续游戏"
+
+[node name="SettingsButton" type="Button" parent="Root/MenuPanel/MenuButtons"]
+layout_mode = 2
+custom_minimum_size = Vector2(340, 48)
+text = "设置"
+
+[node name="IntroButton" type="Button" parent="Root/MenuPanel/MenuButtons"]
+layout_mode = 2
+custom_minimum_size = Vector2(340, 48)
+text = "游戏介绍"
+
+[node name="QuitButton" type="Button" parent="Root/MenuPanel/MenuButtons"]
+layout_mode = 2
+custom_minimum_size = Vector2(340, 48)
+text = "退出游戏"
+
+[node name="MenuHint" type="Label" parent="Root/MenuPanel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 458.0
+offset_right = 374.0
+offset_bottom = 492.0
+text = "Enter 确认 / 鼠标点击选择"
 horizontal_alignment = 1
 
-[node name="SubtitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Vocabulary is your strongest weapon"
-horizontal_alignment = 1
+[node name="SettingsOverlay" type="Control" parent="Root"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-custom_minimum_size = Vector2(280, 70)
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
-theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
-text = "Start Journey"
+[node name="SettingsDim" type="ColorRect" parent="Root/SettingsOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.62)
 
-[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-custom_minimum_size = Vector2(280, 70)
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
-theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
-text = "Quit"
+[node name="SettingsPanel" type="Panel" parent="Root/SettingsOverlay"]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 146.0
+offset_right = 924.0
+offset_bottom = 574.0
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="SettingsTitle" type="Label" parent="Root/SettingsOverlay/SettingsPanel"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 28.0
+offset_right = 410.0
+offset_bottom = 72.0
+text = "设置"
+
+[node name="MasterLabel" type="Label" parent="Root/SettingsOverlay/SettingsPanel"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 116.0
+offset_right = 206.0
+offset_bottom = 152.0
+text = "主音量"
+
+[node name="MasterSlider" type="HSlider" parent="Root/SettingsOverlay/SettingsPanel"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 112.0
+offset_right = 500.0
+offset_bottom = 154.0
+max_value = 100.0
+value = 80.0
+
+[node name="MusicCheck" type="CheckButton" parent="Root/SettingsOverlay/SettingsPanel"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 176.0
+offset_right = 500.0
+offset_bottom = 226.0
+button_pressed = true
+text = "播放背景音乐"
+
+[node name="SfxCheck" type="CheckButton" parent="Root/SettingsOverlay/SettingsPanel"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 236.0
+offset_right = 500.0
+offset_bottom = 286.0
+button_pressed = true
+text = "播放音效"
+
+[node name="SettingsNote" type="Label" parent="Root/SettingsOverlay/SettingsPanel"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 308.0
+offset_right = 514.0
+offset_bottom = 354.0
+text = "更多画面和按键设置会在后续版本加入。"
+autowrap_mode = 3
+
+[node name="CloseSettingsButton" type="Button" parent="Root/SettingsOverlay/SettingsPanel"]
+layout_mode = 0
+offset_left = 358.0
+offset_top = 360.0
+offset_right = 516.0
+offset_bottom = 408.0
+text = "返回"
+
+[node name="IntroOverlay" type="Control" parent="Root"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IntroDim" type="ColorRect" parent="Root/IntroOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.62)
+
+[node name="IntroPanel" type="Panel" parent="Root/IntroOverlay"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 116.0
+offset_right = 1000.0
+offset_bottom = 606.0
+
+[node name="IntroTitle" type="Label" parent="Root/IntroOverlay/IntroPanel"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 30.0
+offset_right = 500.0
+offset_bottom = 78.0
+text = "游戏介绍"
+
+[node name="IntroBody" type="Label" parent="Root/IntroOverlay/IntroPanel"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 106.0
+offset_right = 674.0
+offset_bottom = 360.0
+text = "这是一个用英语单词修复世界的像素 RPG。你是刚被《万语之书》选中的学徒，要走进词灵世界，找回散落的书页。和村民交谈，会学会日常词；遇见迷失的词灵，就用装备和战斗把它们带回书中。"
+autowrap_mode = 3
+
+[node name="IntroGoal" type="Label" parent="Root/IntroOverlay/IntroPanel"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 372.0
+offset_right = 674.0
+offset_bottom = 416.0
+text = "第一站：书灯村。找回三页书页，让第一只词灵安静下来。"
+autowrap_mode = 3
+
+[node name="CloseIntroButton" type="Button" parent="Root/IntroOverlay/IntroPanel"]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 414.0
+offset_right = 674.0
+offset_bottom = 462.0
+text = "返回"
+
+[connection signal="pressed" from="Root/MenuPanel/MenuButtons/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="Root/MenuPanel/MenuButtons/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Root/MenuPanel/MenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Root/MenuPanel/MenuButtons/IntroButton" to="." method="_on_intro_button_pressed"]
+[connection signal="pressed" from="Root/MenuPanel/MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="Root/SettingsOverlay/SettingsPanel/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="toggled" from="Root/SettingsOverlay/SettingsPanel/MusicCheck" to="." method="_on_music_check_toggled"]
+[connection signal="toggled" from="Root/SettingsOverlay/SettingsPanel/SfxCheck" to="." method="_on_sfx_check_toggled"]
+[connection signal="pressed" from="Root/SettingsOverlay/SettingsPanel/CloseSettingsButton" to="." method="_on_close_settings_button_pressed"]
+[connection signal="pressed" from="Root/IntroOverlay/IntroPanel/CloseIntroButton" to="." method="_on_close_intro_button_pressed"]

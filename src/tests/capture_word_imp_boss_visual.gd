@@ -1,5 +1,5 @@
 extends Node
-## Utility scene for capturing the Word Imp boss panel.
+## Utility scene for capturing the Word Imp real-time boss encounter.
 
 func _ready() -> void:
     if DisplayServer.get_name() == "headless":
@@ -8,6 +8,7 @@ func _ready() -> void:
         return
 
     QuestManager.reset_chapter()
+    PlayerData.reset_runtime_state()
     QuestManager.complete_branch("library")
     QuestManager.complete_branch("blacksmith")
     QuestManager.complete_branch("garden")
@@ -17,8 +18,7 @@ func _ready() -> void:
     await get_tree().process_frame
 
     CombatManager.start_boss_battle("word_imp")
-    while CombatManager.get_enemy_hp() > 4:
-        CombatManager.apply_answer_result(true, "attack")
+    CombatManager.advance_battle(1.0)
     await get_tree().process_frame
     await get_tree().process_frame
 

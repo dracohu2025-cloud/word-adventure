@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://src/world/chapter_exit.gd" id="1_exit"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
+size = Vector2(96, 96)
+
+[node name="ChapterExit" type="Area2D"]
+script = ExtResource("1_exit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_exit")
+
+[node name="InteractionMarker" type="Node2D" parent="."]
+position = Vector2(0, -54)
+z_index = 20
+
+[node name="Shadow" type="ColorRect" parent="InteractionMarker"]
+offset_left = -11.0
+offset_top = -21.0
+offset_right = 11.0
+offset_bottom = 3.0
+color = Color(0.12, 0.08, 0.04, 0.86)
+
+[node name="Bubble" type="ColorRect" parent="InteractionMarker"]
+offset_left = -8.0
+offset_top = -24.0
+offset_right = 8.0
+offset_bottom = -2.0
+color = Color(1, 0.796078, 0.156863, 1)
+
+[node name="Icon" type="Label" parent="InteractionMarker"]
+offset_left = -8.0
+offset_top = -25.0
+offset_right = 8.0
+offset_bottom = -1.0
+theme_override_colors/font_color = Color(0.145098, 0.0862745, 0.0352941, 1)
+theme_override_font_sizes/font_size = 18
+text = ">"
+horizontal_alignment = 1
+vertical_alignment = 1
